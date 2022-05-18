@@ -1,11 +1,11 @@
 //Compra-Venta de cripto
 
-let pesos = parseFloat(prompt("Ingrese la cantidad de dinero que tiene"));
+let pesos = parseFloat(prompt("Ingrese la cantidad de dinero que quiere cargar en su cartera"));
 let cripto = 0;
 let menu;
 
 function saldo(pesos, cripto){
-    alert("Su nuevo saldo es de: $" + pesos + " y " + cripto + " criptomonedas");
+    alert("Su saldo es de: $" + pesos + " y " + cripto + " criptomonedas");
 }
 
 do {
@@ -15,7 +15,7 @@ do {
     switch(menu){
         case 1:
 
-            let compra = parseFloat(prompt("Ingrese cuanto quiere comprar"));
+            let compra = parseFloat(prompt("Ingrese en pesos cuanto quiere comprar"));
 
             if(compra <= pesos){
                 pesos -= compra;
