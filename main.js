@@ -1,5 +1,4 @@
 //Compra-Venta de cripto
-
 let menu;
 let menuCompra;
 let menuVenta;
@@ -66,6 +65,9 @@ do {
             switch(menuCompra){
                 case 1:
                 compra = parseFloat(prompt("Ingrese en pesos cuanto BTC quiere comprar"));
+                while(compra < 0 || isNaN(compra)){
+                    compra = parseFloat(prompt("Ingrese una cantidad valida"));
+                }
                 validarCompra(compra);
 
                 if(cripto.some(cr => cr.codigo == "BTC")){
@@ -78,6 +80,9 @@ do {
 
                 case 2:
                 compra = parseFloat(prompt("Ingrese en pesos cuanto ETH quiere comprar"));
+                while(compra < 0 || isNaN(compra)){
+                    compra = parseFloat(prompt("Ingrese una cantidad valida"));
+                }
                 validarCompra(compra);
 
                 if(cripto.some(cr => cr.codigo == "ETH")){
@@ -106,6 +111,9 @@ do {
                     alert("No posee BTC");
                 }
                 venta = parseFloat(prompt("Ingrese en BTC cuanto quiere vender"));
+                while(venta < 0 || isNaN(venta)){
+                    venta = parseFloat(prompt("Ingrese una cantidad valida"));
+                }
                 cripto.find(cr => cr.codigo == "BTC").vender(venta);
                 break;
 
@@ -114,6 +122,9 @@ do {
                     alert("No posee ETH");
                 }
                 venta = parseFloat(prompt("Ingrese en ETH cuanto quiere vender"));
+                while(venta < 0 || isNaN(venta)){
+                    venta = parseFloat(prompt("Ingrese una cantidad valida"));
+                }
                 cripto.find(cr => cr.codigo == "ETH").vender(venta);
                 break;
 
