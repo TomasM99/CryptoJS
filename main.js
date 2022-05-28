@@ -2,6 +2,7 @@
 
 let menu;
 let menuCompra;
+let menuVenta;
 
 let cripto = [];
 
@@ -21,6 +22,15 @@ class Criptomoneda{
     agregarCompra(compra){
         this.cantidad = this.cantidad + (compra/this.precio);
     }
+
+    vender(cantidadVendida){
+        if(cantidadVendida <= this.cantidad){
+            this.cantidad -= cantidadVendida;
+            pesos += (cantidadVendida*this.precio);
+        }else{
+            alert("No tiene suficientes criptomonedas")
+        }
+    }
 }
 
 function saldo(pesos){
@@ -32,16 +42,6 @@ function validarCompra(compra){
         pesos -= compra;
     }else{
         alert("No tiene dinero suficiente")
-    }
-}
-
-function ventaCripto(venta){
-    if(venta <= cripto){
-        cripto -= venta;
-        pesos = pesos + (venta * 2);
-        saldo(pesos);
-    }else{
-        alert("No tiene criptomonedas suficientes");
     }
 }
 
@@ -96,8 +96,32 @@ do {
         break;
 
         case 2:
-            let venta = parseFloat(prompt("Ingrese cuentas criptomonedas quiere vender"));
-            ventaCripto(venta);
+
+            menuVenta = parseFloat(prompt("Para vender BTC: 1\nPara vender ETH: 2"));
+            let venta;
+
+            switch(menuVenta){
+                case 1:
+                if(!cripto.some(cr => cr.codigo == "BTC")){
+                    alert("No posee BTC");
+                }
+                venta = parseFloat(prompt("Ingrese en BTC cuanto quiere vender"));
+                cripto.find(cr => cr.codigo == "BTC").vender(venta);
+                break;
+
+                case 2:
+                if(!cripto.some(cr => cr.codigo == "ETH")){
+                    alert("No posee ETH");
+                }
+                venta = parseFloat(prompt("Ingrese en ETH cuanto quiere vender"));
+                cripto.find(cr => cr.codigo == "ETH").vender(venta);
+                break;
+
+                default:
+                    alert("Ingrese un valor valido");
+                break;
+            }
+            console.log(cripto);
         break;
 
         case 3:
