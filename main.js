@@ -17,21 +17,23 @@ class Criptomoneda{
         this.precio = precio;
         this.cantidad = cantidad;
     }
+
+    agregarCompra(compra){
+        this.cantidad = this.cantidad + (compra/this.precio);
+    }
 }
 
 function saldo(pesos){
     alert("Su saldo es de: $" + pesos);
 }
 
-function validarCompra(compra, moneda){
+function validarCompra(compra){
     if(compra <= pesos){
         pesos -= compra;
-        cripto.push(moneda);
     }else{
         alert("No tiene dinero suficiente")
     }
 }
-
 
 function ventaCripto(venta){
     if(venta <= cripto){
@@ -60,31 +62,37 @@ do {
 
             menuCompra = parseFloat(prompt("Para comprar BTC: 1\nPara comprar ETH: 2"));
             let compra;
-            let moneda;
 
             switch(menuCompra){
                 case 1:
-
                 compra = parseFloat(prompt("Ingrese en pesos cuanto BTC quiere comprar"));
-                moneda = new Criptomoneda("BitCoin", "BTC", 100, (compra/100));
+                validarCompra(compra);
 
-                validarCompra(compra, moneda);
-
+                if(cripto.some(cr => cr.codigo == "BTC")){
+                    cripto.find(cr => cr.codigo == "BTC").agregarCompra(compra);
+                }else{
+                    let BTC = new Criptomoneda("BitCoin", "BTC", 100, (compra/100));
+                    cripto.push(BTC);
+                }
                 break;
 
                 case 2:
-
                 compra = parseFloat(prompt("Ingrese en pesos cuanto ETH quiere comprar"));
-                moneda = new Criptomoneda("Ethereum", "ETH", 50, (compra/50));
+                validarCompra(compra);
 
-                validarCompra(compra, moneda);
-
+                if(cripto.some(cr => cr.codigo == "ETH")){
+                    cripto.find(cr => cr.codigo == "ETH").agregarCompra(compra);
+                }else{
+                    let ETH = new Criptomoneda("Ethereum", "ETH", 50, (compra/50));
+                    cripto.push(ETH);
+                }
                 break;
 
                 default:
                     alert("Ingrese un valor valido");
                 break;
             }
+            console.log(cripto);
         break;
 
         case 2:
