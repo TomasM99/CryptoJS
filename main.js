@@ -27,6 +27,9 @@ class Criptomoneda{
         }else{
             alert("No tiene suficientes criptomonedas")
         }
+        if(this.cantidad == 0){
+            cripto.sort((a,b) => b.cantidad - a.cantidad).pop();
+        }
     }
 }
 
@@ -110,6 +113,7 @@ do {
                 case 1:
                 if(!cripto.some(cr => cr.codigo == "BTC")){
                     alert("No posee BTC");
+                    break;
                 }
                 venta = parseFloat(prompt("Ingrese en BTC cuanto quiere vender"));
                 venta = validarCantidadIngresada(venta);
@@ -119,6 +123,7 @@ do {
                 case 2:
                 if(!cripto.some(cr => cr.codigo == "ETH")){
                     alert("No posee ETH");
+                    break;
                 }
                 venta = parseFloat(prompt("Ingrese en ETH cuanto quiere vender"));
                 venta = validarCantidadIngresada(venta);
