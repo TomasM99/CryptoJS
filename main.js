@@ -74,9 +74,18 @@ function agregarTransaccion(tipo, codigo, precio){
     historial.push(transaccion);
 }
 
+function verTransaccion(tipoTransaccion){
+    if(tipoTransaccion.toUpperCase() == "TODAS"){
+        console.log(historial);
+    }else{
+        historialTransaccion = historial.filter(transaccion => transaccion.tipo == tipoTransaccion.toUpperCase());
+        console.log(historialTransaccion);
+    }
+}
+
 do {
 
-    menu = parseFloat(prompt("Para comprar cripto ingrese: 1\nPara vender cripto ingrese: 2\nPara ver su saldo ingrese: 3\nPara cargar dinero ingrese: 4\nPara retirar dinero ingrese: 5\nPara salir ingrese: 0"));
+    menu = parseFloat(prompt("Para comprar cripto ingrese: 1\nPara vender cripto ingrese: 2\nPara ver su saldo ingrese: 3\nPara cargar dinero ingrese: 4\nPara retirar dinero ingrese: 5\nPara mostrar transaccion: 6\nPara salir ingrese: 0"));
     
     switch(menu){
         case 1:
@@ -175,6 +184,12 @@ do {
             agregarTransaccion("RETIRO", "-", retiro);
         break;
 
+        case 6:
+            let transac = prompt("Ingrese transaccion a mostrar o 'todas' para ver todo su historial");
+            verTransaccion(transac);
+            menu = 0;
+        break;
+
         case 0:
         break;
 
@@ -185,5 +200,6 @@ do {
     
 }while(menu);
 
+//Muestro los arrays completos para comprobar
 console.log(cripto);
 console.log(historial);
