@@ -4,6 +4,7 @@ let menuCompra;
 let menuVenta;
 
 let cripto = [];
+let historial = [];
 
 let pesos = parseFloat(prompt("Ingrese la cantidad de dinero que quiere cargar en su cartera"));
 pesos = validarCantidadIngresada(pesos);
@@ -30,6 +31,14 @@ class Criptomoneda{
         if(this.cantidad == 0){
             cripto.sort((a,b) => b.cantidad - a.cantidad).pop();
         }
+    }
+}
+
+class Transaccion{
+    constructor(tipo, cripto, precio){
+        this.tipo = tipo;
+        this.cripto = cripto;
+        this.precio = precio;
     }
 }
 
@@ -60,6 +69,11 @@ function validarCantidadIngresada(cantidad){
     return cantidad;
 }
 
+function agregarTransaccion(tipo, codigo, precio){
+    let transaccion = new Transaccion(tipo, codigo, precio);
+    historial.push(transaccion);
+}
+
 do {
 
     menu = parseFloat(prompt("Para comprar cripto ingrese: 1\nPara vender cripto ingrese: 2\nPara ver su saldo ingrese: 3\nPara cargar dinero ingrese: 4\nPara retirar dinero ingrese: 5\nPara salir ingrese: 0"));
@@ -82,6 +96,8 @@ do {
                     let BTC = new Criptomoneda("BitCoin", "BTC", 100, (compra/100));
                     cripto.push(BTC);
                 }
+
+                agregarTransaccion("COMPRA", "BTC", compra);
                 break;
 
                 case 2:
@@ -95,6 +111,8 @@ do {
                     let ETH = new Criptomoneda("Ethereum", "ETH", 50, (compra/50));
                     cripto.push(ETH);
                 }
+
+                agregarTransaccion("COMPRA", "ETH", compra);
                 break;
 
                 default:
@@ -118,6 +136,7 @@ do {
                 venta = parseFloat(prompt("Ingrese en BTC cuanto quiere vender"));
                 venta = validarCantidadIngresada(venta);
                 cripto.find(cr => cr.codigo == "BTC").vender(venta);
+                agregarTransaccion("VENTA", "BTC", (venta*100));
                 break;
 
                 case 2:
@@ -128,6 +147,7 @@ do {
                 venta = parseFloat(prompt("Ingrese en ETH cuanto quiere vender"));
                 venta = validarCantidadIngresada(venta);
                 cripto.find(cr => cr.codigo == "ETH").vender(venta);
+                agregarTransaccion("VENTA", "ETH", (venta*50));
                 break;
 
                 default:
@@ -145,12 +165,14 @@ do {
             let carga = parseFloat(prompt("Ingrese cantidad de dinero a cargar"));
             carga = validarCantidadIngresada(carga);
             pesos += carga;
+            agregarTransaccion("RECARGA", "-", carga);
         break;
 
         case 5:
             let retiro = parseFloat(prompt("Ingrese cantidad de dinero a retirar"));
             retiro = validarCantidadIngresada(retiro);
             retiroDinero(retiro);
+            agregarTransaccion("RETIRO", "-", retiro);
         break;
 
         case 0:
@@ -164,3 +186,4 @@ do {
 }while(menu);
 
 console.log(cripto);
+console.log(historial);
