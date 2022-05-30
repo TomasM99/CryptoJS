@@ -6,9 +6,7 @@ let menuVenta;
 let cripto = [];
 
 let pesos = parseFloat(prompt("Ingrese la cantidad de dinero que quiere cargar en su cartera"));
-    while(pesos < 0 || isNaN(pesos)){
-        pesos = parseFloat(prompt("Ingrese una cantidad valida"));
-    }
+pesos = validarCantidadIngresada(pesos);
 
 class Criptomoneda{
     constructor(nombre, codigo, precio, cantidad){
@@ -52,6 +50,13 @@ function retiroDinero(retiro){
     }
 }
 
+function validarCantidadIngresada(cantidad){
+    while(cantidad < 0 || isNaN(cantidad)){
+        cantidad = parseFloat(prompt("Ingrese una cantidad valida"));
+    }
+    return cantidad;
+}
+
 do {
 
     menu = parseFloat(prompt("Para comprar cripto ingrese: 1\nPara vender cripto ingrese: 2\nPara ver su saldo ingrese: 3\nPara cargar dinero ingrese: 4\nPara retirar dinero ingrese: 5\nPara salir ingrese: 0"));
@@ -65,9 +70,7 @@ do {
             switch(menuCompra){
                 case 1:
                 compra = parseFloat(prompt("Ingrese en pesos cuanto BTC quiere comprar"));
-                while(compra < 0 || isNaN(compra)){
-                    compra = parseFloat(prompt("Ingrese una cantidad valida"));
-                }
+                compra = validarCantidadIngresada(compra);
                 validarCompra(compra);
 
                 if(cripto.some(cr => cr.codigo == "BTC")){
@@ -80,9 +83,7 @@ do {
 
                 case 2:
                 compra = parseFloat(prompt("Ingrese en pesos cuanto ETH quiere comprar"));
-                while(compra < 0 || isNaN(compra)){
-                    compra = parseFloat(prompt("Ingrese una cantidad valida"));
-                }
+                compra = validarCantidadIngresada(compra);
                 validarCompra(compra);
 
                 if(cripto.some(cr => cr.codigo == "ETH")){
@@ -111,9 +112,7 @@ do {
                     alert("No posee BTC");
                 }
                 venta = parseFloat(prompt("Ingrese en BTC cuanto quiere vender"));
-                while(venta < 0 || isNaN(venta)){
-                    venta = parseFloat(prompt("Ingrese una cantidad valida"));
-                }
+                venta = validarCantidadIngresada(venta);
                 cripto.find(cr => cr.codigo == "BTC").vender(venta);
                 break;
 
@@ -122,9 +121,7 @@ do {
                     alert("No posee ETH");
                 }
                 venta = parseFloat(prompt("Ingrese en ETH cuanto quiere vender"));
-                while(venta < 0 || isNaN(venta)){
-                    venta = parseFloat(prompt("Ingrese una cantidad valida"));
-                }
+                venta = validarCantidadIngresada(venta);
                 cripto.find(cr => cr.codigo == "ETH").vender(venta);
                 break;
 
@@ -141,17 +138,13 @@ do {
 
         case 4:
             let carga = parseFloat(prompt("Ingrese cantidad de dinero a cargar"));
-            while(carga < 0 || isNaN(carga)){
-                carga = parseFloat(prompt("Ingrese una cantidad valida"));
-            }
+            carga = validarCantidadIngresada(carga);
             pesos += carga;
         break;
 
         case 5:
             let retiro = parseFloat(prompt("Ingrese cantidad de dinero a retirar"));
-            while(retiro < 0 || isNaN(retiro)){
-                retiro = parseFloat(prompt("Ingrese una cantidad valida"));
-            }
+            retiro = validarCantidadIngresada(retiro);
             retiroDinero(retiro);
         break;
 
