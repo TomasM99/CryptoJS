@@ -126,7 +126,7 @@ botonVerTransacciones.onclick = () => {verTransacciones()};
 
 do {
 
-    menu = parseFloat(prompt("Para comprar cripto ingrese: 1\nPara vender cripto ingrese: 2\nPara ver su saldo ingrese: 3\nPara cargar dinero ingrese: 4\nPara retirar dinero ingrese: 5\nPara mostrar transaccion: 6\nPara salir ingrese: 0"));
+    menu = parseFloat(prompt("Para comprar cripto ingrese: 1\nPara vender cripto ingrese: 2\nPara salir ingrese: 0"));
     
     switch(menu){
         case 1:
@@ -205,10 +205,6 @@ do {
     
 }while(menu);
 
-//Muestro los arrays completos para comprobar
-console.log(cripto);
-console.log(historial);
-
 //Creo articulos dinamicamente mostrando todas mis monedas
 for (const criptomoneda of cripto) {
     let articulo = document.createElement("article");
@@ -221,3 +217,7 @@ for (const criptomoneda of cripto) {
     let contenedor = document.getElementById("criptos");
     contenedor.append(articulo);
 }
+
+//Muestro los arrays completos para comprobar
+console.log(cripto);
+console.log(historial);
