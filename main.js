@@ -1,14 +1,13 @@
-//Compra-Venta de cripto
+//Variables
 let menu;
 let menuCompra;
 let menuVenta;
 
+let pesos = 0;
 let cripto = [];
 let historial = [];
 
-let pesos = parseFloat(prompt("Ingrese la cantidad de dinero que quiere cargar en su cartera"));
-pesos = validarCantidadIngresada(pesos);
-
+//Clases
 class Criptomoneda{
     constructor(nombre, codigo, precio, cantidad){
         this.nombre = nombre;
@@ -44,32 +43,13 @@ class Transaccion{
     }
 }
 
-function saldo(pesos){
-    alert(`Su saldo es de: $${pesos}`);
-}
-
+//Funciones
 function validarCompra(compra){
     if(compra <= pesos){
         pesos -= compra;
     }else{
         alert("No tiene dinero suficiente")
     }
-}
-
-function retiroDinero(retiro){
-    if(retiro <= pesos){
-        pesos -= retiro;
-        agregarTransaccion("RETIRO", "-", retiro);
-    }else{
-        alert("No posee esa cantidad de dinero");
-    }
-}
-
-function validarCantidadIngresada(cantidad){
-    while(cantidad < 0 || isNaN(cantidad)){
-        cantidad = parseFloat(prompt("Ingrese una cantidad valida"));
-    }
-    return cantidad;
 }
 
 function agregarTransaccion(tipo, codigo, precio){
@@ -85,6 +65,48 @@ function verTransaccion(tipoTransaccion){
         console.log(historialTransaccion);
     }
 }
+
+function actualizarSaldo(nuevoSaldo) {
+    let saldo = document.getElementById("pesos");
+    saldo.innerText = `Pesos: $${nuevoSaldo}`;
+}
+
+//Funciones eventos
+function realizarDeposito() {
+    let deposito = document.getElementById("deposito");
+    deposito = parseFloat(deposito.value);
+    if(deposito < 0){
+        alert("Solo valores positivos")
+    }else{
+        pesos = pesos + deposito;
+        agregarTransaccion("DEPOSITO", "-", deposito);
+        actualizarSaldo(pesos);
+    }
+}
+
+function realizarRetiro(){
+    let retiro = document.getElementById("retiro");
+    retiro = parseFloat(retiro.value);
+    if(retiro < 0){
+        alert("Solo valores positivos");
+    }else{
+        if(pesos >= retiro){
+            pesos = pesos - retiro;
+            agregarTransaccion("RETIRO", "-", retiro);
+            actualizarSaldo(pesos);
+        }else{
+            alert("No cuenta con esa cantidad de dinero");
+        }
+    }
+}
+
+//Eventos
+let botonDepositar = document.getElementById("depositar")
+botonDepositar.onclick = () => {realizarDeposito()};
+
+let botonRetirar = document.getElementById("retirar")
+botonRetirar.onclick = () => {realizarRetiro()};
+
 
 do {
 
@@ -165,23 +187,6 @@ do {
             console.log(cripto);
         break;
 
-        case 3:
-            saldo(pesos);
-        break;
-
-        case 4:
-            let carga = parseFloat(prompt("Ingrese cantidad de dinero a cargar"));
-            carga = validarCantidadIngresada(carga);
-            pesos += carga;
-            agregarTransaccion("RECARGA", "-", carga);
-        break;
-
-        case 5:
-            let retiro = parseFloat(prompt("Ingrese cantidad de dinero a retirar"));
-            retiro = validarCantidadIngresada(retiro);
-            retiroDinero(retiro);
-        break;
-
         case 6:
             let transac = prompt("Ingrese transaccion a mostrar o 'todas' para ver todo su historial");
             verTransaccion(transac);
@@ -190,10 +195,6 @@ do {
 
         case 0:
         break;
-
-        default:
-            alert("Ingrese un valor valido");
-        break;
     }
     
 }while(menu);
@@ -201,10 +202,6 @@ do {
 //Muestro los arrays completos para comprobar
 console.log(cripto);
 console.log(historial);
-
-//Muestro por pantalla el saldo actual
-let verSaldo = document.getElementById("pesos");
-verSaldo.innerText = `Pesos: $${pesos}`;
 
 //Creo articulos dinamicamente mostrando todas mis monedas
 for (const criptomoneda of cripto) {
