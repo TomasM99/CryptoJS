@@ -7,6 +7,8 @@ let pesos = 0;
 let cripto = [];
 let historial = [];
 
+pesos = parseFloat(prompt("Ingrese cantidad de dinero"));
+
 //Clases
 class Criptomoneda{
     constructor(nombre, codigo, precio, cantidad){
@@ -100,13 +102,27 @@ function realizarRetiro(){
     }
 }
 
+function verTransacciones(){
+    for (const transaccion of historial) {
+        let articulo = document.createElement("article");
+    
+        articulo.innerHTML = `<h4> ${transaccion.tipo} </h4>
+                                <p> Precio: ${transaccion.precio}</p>
+                                <p> Criptomoneda: ${transaccion.cripto}</p>`
+        let contenedor = document.getElementById("transacciones");
+        contenedor.append(articulo);
+    }
+}
+
 //Eventos
-let botonDepositar = document.getElementById("depositar")
+let botonDepositar = document.getElementById("depositar");
 botonDepositar.onclick = () => {realizarDeposito()};
 
-let botonRetirar = document.getElementById("retirar")
+let botonRetirar = document.getElementById("retirar");
 botonRetirar.onclick = () => {realizarRetiro()};
 
+let botonVerTransacciones = document.getElementById("transacc");
+botonVerTransacciones.onclick = () => {verTransacciones()};
 
 do {
 
@@ -121,7 +137,6 @@ do {
             switch(menuCompra){
                 case 1:
                 compra = parseFloat(prompt("Ingrese en pesos cuanto BTC quiere comprar"));
-                compra = validarCantidadIngresada(compra);
                 validarCompra(compra);
 
                 if(cripto.some(cr => cr.codigo == "BTC")){
@@ -135,7 +150,6 @@ do {
 
                 case 2:
                 compra = parseFloat(prompt("Ingrese en pesos cuanto ETH quiere comprar"));
-                compra = validarCantidadIngresada(compra);
                 validarCompra(compra);
 
                 if(cripto.some(cr => cr.codigo == "ETH")){
@@ -166,7 +180,6 @@ do {
                     break;
                 }
                 venta = parseFloat(prompt("Ingrese en BTC cuanto quiere vender"));
-                venta = validarCantidadIngresada(venta);
                 cripto.find(cr => cr.codigo == "BTC").vender(venta);
                 break;
 
@@ -176,7 +189,6 @@ do {
                     break;
                 }
                 venta = parseFloat(prompt("Ingrese en ETH cuanto quiere vender"));
-                venta = validarCantidadIngresada(venta);
                 cripto.find(cr => cr.codigo == "ETH").vender(venta);
                 break;
 
@@ -185,12 +197,6 @@ do {
                 break;
             }
             console.log(cripto);
-        break;
-
-        case 6:
-            let transac = prompt("Ingrese transaccion a mostrar o 'todas' para ver todo su historial");
-            verTransaccion(transac);
-            menu = 0;
         break;
 
         case 0:
@@ -213,16 +219,5 @@ for (const criptomoneda of cripto) {
                             <p> Cantidad: ${criptomoneda.cantidad}</p>
                             <p> Total: ${total}</p>`;
     let contenedor = document.getElementById("criptos");
-    contenedor.append(articulo);
-}
-
-//Creo articulos dinamicamente mostrando todo mi historial
-for (const transaccion of historial) {
-    let articulo = document.createElement("article");
-
-    articulo.innerHTML = `<h4> ${transaccion.tipo} </h4>
-                            <p> Precio: ${transaccion.precio}</p>
-                            <p> Criptomoneda: ${transaccion.cripto}</p>`
-    let contenedor = document.getElementById("transacciones");
     contenedor.append(articulo);
 }
