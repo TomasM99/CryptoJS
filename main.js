@@ -221,3 +221,12 @@ for (const criptomoneda of cripto) {
 //Muestro los arrays completos para comprobar
 console.log(cripto);
 console.log(historial);
+
+const criptomonedas =  [{nombre: "BitCoin", codigo: "BTC", precio: 3500},
+                        {nombre: "Ethereum", codigo: "ETH", precio: 500},
+                        {nombre: "DogeCoin", codigo: "DGC", precio: 10},
+                        {nombre: "USD Coin", codigo: "USC", precio: 200},
+                        {nombre: "Dai", codigo: "DAI", precio: 250},
+                        {nombre: "LiteCoin", codigo: "LTC", precio: 2000},
+                        {nombre: "UniSwap", codigo: "USW", precio: 700},
+                        {nombre: "Aave", codigo: "AAV", precio: 1500}];
