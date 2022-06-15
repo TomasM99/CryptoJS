@@ -112,8 +112,8 @@ function realizarRetiro(){
 
 function verTransacciones(){
     let contenedor = document.getElementById("transacciones");
-    contenedor.innerHTML = `<div></div>`
-    contenedor.className = "orden"
+    contenedor.innerHTML = `<div></div>`;
+    contenedor.className = "orden";
     for (const transaccion of historial) {
         let articulo = document.createElement("article");
     
@@ -131,6 +131,29 @@ function ocultarTransacciones(){
     botonVerTransacciones.onclick = () => {verTransacciones()};
 }
 
+function verWallet(){
+    let contenedor = document.getElementById("criptos");
+    contenedor.innerHTML = `<div></div>`;
+    contenedor.className = "orden";
+    for (const criptomoneda of cripto) {
+        let articulo = document.createElement("article");
+        let total = criptomoneda.precio * criptomoneda.cantidad;
+    
+        articulo.innerHTML = `<h4> ${criptomoneda.codigo} (${criptomoneda.nombre}) </h4>
+                                <p> Precio: ${criptomoneda.precio}</p>
+                                <p> Cantidad: ${criptomoneda.cantidad}</p>
+                                <p> Total: ${total}</p>`;
+        contenedor.append(articulo);
+    }
+    botonVerWallet.onclick = () => {ocultarWallet()};
+}
+
+function ocultarWallet(){
+    let contenedor = document.getElementById("criptos");
+    contenedor.className = "orden ocultar"
+    botonVerTransacciones.onclick = () => {verWallet()};
+}
+
 //Eventos
 let botonDepositar = document.getElementById("depositar");
 botonDepositar.onclick = () => {realizarDeposito()};
@@ -140,6 +163,9 @@ botonRetirar.onclick = () => {realizarRetiro()};
 
 let botonVerTransacciones = document.getElementById("transacc");
 botonVerTransacciones.onclick = () => {verTransacciones()};
+
+let botonVerWallet = document.getElementById("wallet");
+botonVerWallet.onclick = () => {verWallet()};
 
 do {
 
@@ -221,19 +247,6 @@ do {
     }
     
 }while(menu);
-
-//Creo articulos dinamicamente mostrando todas mis monedas
-for (const criptomoneda of cripto) {
-    let articulo = document.createElement("article");
-    let total = criptomoneda.precio * criptomoneda.cantidad;
-
-    articulo.innerHTML = `<h4> ${criptomoneda.codigo} (${criptomoneda.nombre}) </h4>
-                            <p> Precio: ${criptomoneda.precio}</p>
-                            <p> Cantidad: ${criptomoneda.cantidad}</p>
-                            <p> Total: ${total}</p>`;
-    let contenedor = document.getElementById("criptos");
-    contenedor.append(articulo);
-}
 
 //Muestro los arrays completos para comprobar
 console.log(cripto);
