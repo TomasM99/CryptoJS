@@ -117,22 +117,22 @@ function realizarRetiro(){
 }
 
 function verTransacciones(){
-    let contenedor = document.getElementById("transacciones");
-    contenedor.innerHTML = `<div></div>`;
-    contenedor.className = "orden";
+    let div = document.getElementById("transacciones");
+    div.innerHTML = `<div></div>`;
+    div.className = "orden";
     for (const transaccion of historial) {
         let articulo = document.createElement("article");
         articulo.innerHTML = `<h4> ${transaccion.tipo} </h4>
                                 <p> Precio: ${transaccion.precio}</p>
                                 <p> Criptomoneda: ${transaccion.cripto}</p>`
-        contenedor.append(articulo);
+        div.append(articulo);
     }
     botonVerTransacciones.onclick = () => {ocultarTransacciones()};
 }
 
 function ocultarTransacciones(){
-    let contenedor = document.getElementById("transacciones");
-    contenedor.className = "orden ocultar"
+    let div = document.getElementById("transacciones");
+    div.className = "orden ocultar"
     botonVerTransacciones.onclick = () => {verTransacciones()};
 }
 
@@ -155,7 +155,7 @@ function verWallet(){
 function ocultarWallet(){
     let contenedor = document.getElementById("criptos");
     contenedor.className = "orden ocultar"
-    botonVerTransacciones.onclick = () => {verWallet()};
+    botonVerWallet.onclick = () => {verWallet()};
 }
 
 function realizarCompra(ev){
