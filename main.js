@@ -1,6 +1,5 @@
 //Variables
 let menu;
-let menuCompra;
 let menuVenta;
 
 let pesos = 0;
@@ -15,7 +14,13 @@ const criptomonedas =  [{nombre: "BitCoin", codigo: "BTC", precio: 3500},
                         {nombre: "UniSwap", codigo: "USW", precio: 700},
                         {nombre: "Aave", codigo: "AAV", precio: 1500}];
 
-pesos = parseFloat(prompt("Ingrese cantidad de dinero"));
+for (const moneda of criptomonedas) {
+    let articulo = document.createElement("article");
+    let contenedor = document.getElementById("cotizacion");
+    articulo.innerHTML = `<h4> ${moneda.nombre} (${moneda.codigo}) </h4>
+                            <p> Precio: ${moneda.precio}</p>`;
+    contenedor.append(articulo);
+}
 
 //Clases
 class Criptomoneda{
@@ -29,6 +34,7 @@ class Criptomoneda{
     agregarCompra(compra){
         this.cantidad = this.cantidad + (compra/this.precio);
         agregarTransaccion("COMPRA", this.codigo, compra);
+        actualizarSaldo(pesos);
     }
 
     vender(cantidadVendida){
@@ -116,7 +122,6 @@ function verTransacciones(){
     contenedor.className = "orden";
     for (const transaccion of historial) {
         let articulo = document.createElement("article");
-    
         articulo.innerHTML = `<h4> ${transaccion.tipo} </h4>
                                 <p> Precio: ${transaccion.precio}</p>
                                 <p> Criptomoneda: ${transaccion.cripto}</p>`
@@ -138,7 +143,6 @@ function verWallet(){
     for (const criptomoneda of cripto) {
         let articulo = document.createElement("article");
         let total = criptomoneda.precio * criptomoneda.cantidad;
-    
         articulo.innerHTML = `<h4> ${criptomoneda.codigo} (${criptomoneda.nombre}) </h4>
                                 <p> Precio: ${criptomoneda.precio}</p>
                                 <p> Cantidad: ${criptomoneda.cantidad}</p>
@@ -154,6 +158,32 @@ function ocultarWallet(){
     botonVerTransacciones.onclick = () => {verWallet()};
 }
 
+function realizarCompra(ev){
+    ev.preventDefault();
+    let campoCodigo = document.getElementById("codigoCripto");
+    let campoCantidad = document.getElementById("cantidadCompra");
+    campoCantidad = parseFloat(campoCantidad.value);
+
+    if(campoCantidad < 0){
+        alert("Solo valores positivos");
+    }else{
+        if(pesos >= campoCantidad){
+            pesos -= campoCantidad;
+            if(cripto.some(cr => cr.codigo == campoCodigo.value)){
+                cripto.find(cr => cr.codigo == campoCodigo.value).agregarCompra(campoCantidad);
+            }else{
+                let nuevaMoneda = criptomonedas.find(cr => cr.codigo == campoCodigo.value);
+                let moneda = new Criptomoneda(nuevaMoneda, (campoCantidad/nuevaMoneda.precio));
+                cripto.push(moneda);
+                agregarTransaccion("COMPRA", campoCodigo.value, campoCantidad);
+                actualizarSaldo(pesos);
+            }
+        }else{
+            alert("No cuenta con esa cantidad de dinero");
+        }
+    }
+}
+
 //Eventos
 let botonDepositar = document.getElementById("depositar");
 botonDepositar.onclick = () => {realizarDeposito()};
@@ -167,49 +197,14 @@ botonVerTransacciones.onclick = () => {verTransacciones()};
 let botonVerWallet = document.getElementById("wallet");
 botonVerWallet.onclick = () => {verWallet()};
 
+let formularioCompra = document.getElementById("compra");
+formularioCompra.addEventListener("submit", realizarCompra);
+
 do {
 
-    menu = parseFloat(prompt("Para comprar cripto ingrese: 1\nPara vender cripto ingrese: 2\nPara salir ingrese: 0"));
+    menu = parseFloat(prompt("Para vender cripto ingrese: 2\nPara salir ingrese: 0"));
     
     switch(menu){
-        case 1:
-
-            menuCompra = parseFloat(prompt("Para comprar BTC: 1\nPara comprar ETH: 2"));
-            let compra;
-
-            switch(menuCompra){
-                case 1:
-                compra = parseFloat(prompt("Ingrese en pesos cuanto BTC quiere comprar"));
-                validarCompra(compra);
-
-                if(cripto.some(cr => cr.codigo == "BTC")){
-                    cripto.find(cr => cr.codigo == "BTC").agregarCompra(compra);
-                }else{
-                    let BTC = new Criptomoneda("BitCoin", "BTC", 100, (compra/100));
-                    cripto.push(BTC);
-                    agregarTransaccion("COMPRA", "BTC", compra);
-                }
-                break;
-
-                case 2:
-                compra = parseFloat(prompt("Ingrese en pesos cuanto ETH quiere comprar"));
-                validarCompra(compra);
-
-                if(cripto.some(cr => cr.codigo == "ETH")){
-                    cripto.find(cr => cr.codigo == "ETH").agregarCompra(compra);
-                }else{
-                    let ETH = new Criptomoneda("Ethereum", "ETH", 50, (compra/50));
-                    cripto.push(ETH);
-                    agregarTransaccion("COMPRA", "ETH", compra);
-                }
-                break;
-
-                default:
-                    alert("Ingrese un valor valido");
-                break;
-            }
-            console.log(cripto);
-        break;
 
         case 2:
 

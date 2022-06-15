@@ -45,8 +45,24 @@
         </section>
 
     <!--Cotizaciones-->
-        <section>
-            <!--A implementar o varios divs, o una tabla o algo asi-->
+        <section class="cotizaciones">
+            <h2>Monedas disponibles</h2>
+            <div id="cotizacion" class="orden">
+
+            </div>
+            <form id="compra">
+                <div>
+                    <label for="codigoCripto">Ingrese el codigo de cripto a comprar</label>
+                    <input type="text" id="codigoCripto" placeholder="BTC">
+                </div>
+                <div>
+                    <label for="cantidadCompra">Ingrese en pesos cuanto quiere comprar</label>
+                    <input type="number" id="cantidadCompra" placeholder="500">
+                </div>
+                <div>
+                    <button type="submit"><strong>COMPRAR</strong></button>
+                </div>
+            </form>
         </section>
 
     <!--Deposito/Retiro-->
