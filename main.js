@@ -6,15 +6,23 @@ let menuVenta;
 let pesos = 0;
 let cripto = [];
 let historial = [];
+const criptomonedas =  [{nombre: "BitCoin", codigo: "BTC", precio: 3500},
+                        {nombre: "Ethereum", codigo: "ETH", precio: 500},
+                        {nombre: "DogeCoin", codigo: "DGC", precio: 10},
+                        {nombre: "USD Coin", codigo: "USC", precio: 200},
+                        {nombre: "Dai", codigo: "DAI", precio: 250},
+                        {nombre: "LiteCoin", codigo: "LTC", precio: 2000},
+                        {nombre: "UniSwap", codigo: "USW", precio: 700},
+                        {nombre: "Aave", codigo: "AAV", precio: 1500}];
 
 pesos = parseFloat(prompt("Ingrese cantidad de dinero"));
 
 //Clases
 class Criptomoneda{
-    constructor(nombre, codigo, precio, cantidad){
-        this.nombre = nombre;
-        this.codigo = codigo;
-        this.precio = precio;
+    constructor(criptomoneda, cantidad){
+        this.nombre = criptomoneda.nombre;
+        this.codigo = criptomoneda.codigo;
+        this.precio = criptomoneda.precio;
         this.cantidad = cantidad;
     }
 
@@ -103,15 +111,24 @@ function realizarRetiro(){
 }
 
 function verTransacciones(){
+    let contenedor = document.getElementById("transacciones");
+    contenedor.innerHTML = `<div></div>`
+    contenedor.className = "orden"
     for (const transaccion of historial) {
         let articulo = document.createElement("article");
     
         articulo.innerHTML = `<h4> ${transaccion.tipo} </h4>
                                 <p> Precio: ${transaccion.precio}</p>
                                 <p> Criptomoneda: ${transaccion.cripto}</p>`
-        let contenedor = document.getElementById("transacciones");
         contenedor.append(articulo);
     }
+    botonVerTransacciones.onclick = () => {ocultarTransacciones()};
+}
+
+function ocultarTransacciones(){
+    let contenedor = document.getElementById("transacciones");
+    contenedor.className = "orden ocultar"
+    botonVerTransacciones.onclick = () => {verTransacciones()};
 }
 
 //Eventos
@@ -221,12 +238,3 @@ for (const criptomoneda of cripto) {
 //Muestro los arrays completos para comprobar
 console.log(cripto);
 console.log(historial);
-
-const criptomonedas =  [{nombre: "BitCoin", codigo: "BTC", precio: 3500},
-                        {nombre: "Ethereum", codigo: "ETH", precio: 500},
-                        {nombre: "DogeCoin", codigo: "DGC", precio: 10},
-                        {nombre: "USD Coin", codigo: "USC", precio: 200},
-                        {nombre: "Dai", codigo: "DAI", precio: 250},
-                        {nombre: "LiteCoin", codigo: "LTC", precio: 2000},
-                        {nombre: "UniSwap", codigo: "USW", precio: 700},
-                        {nombre: "Aave", codigo: "AAV", precio: 1500}];
