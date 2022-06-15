@@ -1,7 +1,4 @@
 //Variables
-let menu;
-let menuVenta;
-
 let pesos = 0;
 let cripto = [];
 let historial = [];
@@ -184,6 +181,20 @@ function realizarCompra(ev){
     }
 }
 
+function realizarVenta(ev){
+    ev.preventDefault();
+    let campoCodigo = document.getElementById("codigoCriptoV");
+    let campoCantidad = document.getElementById("cantidadVenta");
+    campoCantidad = parseFloat(campoCantidad.value);
+
+    if(campoCantidad < 0){
+        alert("Solo valores positivos");
+    }else{
+        cripto.find(cr => cr.codigo == campoCodigo.value).vender(campoCantidad);
+        actualizarSaldo(pesos);
+    }
+}
+
 //Eventos
 let botonDepositar = document.getElementById("depositar");
 botonDepositar.onclick = () => {realizarDeposito()};
@@ -200,49 +211,5 @@ botonVerWallet.onclick = () => {verWallet()};
 let formularioCompra = document.getElementById("compra");
 formularioCompra.addEventListener("submit", realizarCompra);
 
-do {
-
-    menu = parseFloat(prompt("Para vender cripto ingrese: 2\nPara salir ingrese: 0"));
-    
-    switch(menu){
-
-        case 2:
-
-            menuVenta = parseFloat(prompt("Para vender BTC: 1\nPara vender ETH: 2"));
-            let venta;
-
-            switch(menuVenta){
-                case 1:
-                if(!cripto.some(cr => cr.codigo == "BTC")){
-                    alert("No posee BTC");
-                    break;
-                }
-                venta = parseFloat(prompt("Ingrese en BTC cuanto quiere vender"));
-                cripto.find(cr => cr.codigo == "BTC").vender(venta);
-                break;
-
-                case 2:
-                if(!cripto.some(cr => cr.codigo == "ETH")){
-                    alert("No posee ETH");
-                    break;
-                }
-                venta = parseFloat(prompt("Ingrese en ETH cuanto quiere vender"));
-                cripto.find(cr => cr.codigo == "ETH").vender(venta);
-                break;
-
-                default:
-                    alert("Ingrese un valor valido");
-                break;
-            }
-            console.log(cripto);
-        break;
-
-        case 0:
-        break;
-    }
-    
-}while(menu);
-
-//Muestro los arrays completos para comprobar
-console.log(cripto);
-console.log(historial);
+let formularioVenta = document.getElementById("venta");
+formularioVenta.addEventListener("submit", realizarVenta);
