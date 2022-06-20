@@ -52,8 +52,17 @@
             </div>
             <form id="compra">
                 <div>
-                    <label for="codigoCripto">Ingrese el codigo de cripto a comprar</label>
-                    <input type="text" id="codigoCripto" placeholder="BTC">
+                    <label for="codigoCripto">Seleccione el codigo de cripto a comprar</label>
+                    <select id="codigoCripto">
+                        <option selected>BTC</option>
+                        <option>ETH</option>
+                        <option>DGC</option>
+                        <option>USC</option>
+                        <option>DAI</option>
+                        <option>LTC</option>
+                        <option>USW</option>
+                        <option>AAV</option>
+                    </select>
                 </div>
                 <div>
                     <label for="cantidadCompra">Ingrese en pesos cuanto quiere comprar</label>
@@ -128,7 +137,6 @@
         </section>
         <section class="transacciones">
             <h2>Transacciones</h2>
-            <button id="transacc">Ver transacciones</button>
             <div id="transacciones" class="orden">
             
             </div>

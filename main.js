@@ -32,6 +32,7 @@ class Criptomoneda{
         this.cantidad = this.cantidad + (compra/this.precio);
         agregarTransaccion("COMPRA", this.codigo, compra);
         actualizarSaldo(pesos);
+        verTransacciones();
     }
 
     vender(cantidadVendida){
@@ -57,60 +58,14 @@ class Transaccion{
 }
 
 //Funciones
-function validarCompra(compra){
-    if(compra <= pesos){
-        pesos -= compra;
-    }else{
-        alert("No tiene dinero suficiente")
-    }
-}
-
 function agregarTransaccion(tipo, codigo, precio){
     let transaccion = new Transaccion(tipo, codigo, precio);
     historial.push(transaccion);
 }
 
-function verTransaccion(tipoTransaccion){
-    if(tipoTransaccion.toUpperCase() == "TODAS"){
-        console.log(historial);
-    }else{
-        historialTransaccion = historial.filter(transaccion => transaccion.tipo == tipoTransaccion.toUpperCase());
-        console.log(historialTransaccion);
-    }
-}
-
 function actualizarSaldo(nuevoSaldo) {
     let saldo = document.getElementById("pesos");
     saldo.innerText = `Pesos: $${nuevoSaldo}`;
-}
-
-//Funciones eventos
-function realizarDeposito() {
-    let deposito = document.getElementById("deposito");
-    deposito = parseFloat(deposito.value);
-    if(deposito < 0){
-        alert("Solo valores positivos")
-    }else{
-        pesos = pesos + deposito;
-        agregarTransaccion("DEPOSITO", "-", deposito);
-        actualizarSaldo(pesos);
-    }
-}
-
-function realizarRetiro(){
-    let retiro = document.getElementById("retiro");
-    retiro = parseFloat(retiro.value);
-    if(retiro < 0){
-        alert("Solo valores positivos");
-    }else{
-        if(pesos >= retiro){
-            pesos = pesos - retiro;
-            agregarTransaccion("RETIRO", "-", retiro);
-            actualizarSaldo(pesos);
-        }else{
-            alert("No cuenta con esa cantidad de dinero");
-        }
-    }
 }
 
 function verTransacciones(){
@@ -124,13 +79,37 @@ function verTransacciones(){
                                 <p> Criptomoneda: ${transaccion.cripto}</p>`
         div.append(articulo);
     }
-    botonVerTransacciones.onclick = () => {ocultarTransacciones()};
 }
 
-function ocultarTransacciones(){
-    let div = document.getElementById("transacciones");
-    div.className = "orden ocultar"
-    botonVerTransacciones.onclick = () => {verTransacciones()};
+//Funciones eventos
+function realizarDeposito() {
+    let deposito = document.getElementById("deposito");
+    deposito = parseFloat(deposito.value);
+    if(deposito < 0){
+        alert("Solo valores positivos")
+    }else{
+        pesos = pesos + deposito;
+        agregarTransaccion("DEPOSITO", "-", deposito);
+        actualizarSaldo(pesos);
+        verTransacciones();
+    }
+}
+
+function realizarRetiro(){
+    let retiro = document.getElementById("retiro");
+    retiro = parseFloat(retiro.value);
+    if(retiro < 0){
+        alert("Solo valores positivos");
+    }else{
+        if(pesos >= retiro){
+            pesos = pesos - retiro;
+            agregarTransaccion("RETIRO", "-", retiro);
+            actualizarSaldo(pesos);
+            verTransacciones();
+        }else{
+            alert("No cuenta con esa cantidad de dinero");
+        }
+    }
 }
 
 function verWallet(){
@@ -160,7 +139,6 @@ function realizarCompra(ev){
     let campoCodigo = document.getElementById("codigoCripto");
     let campoCantidad = document.getElementById("cantidadCompra");
     campoCantidad = parseFloat(campoCantidad.value);
-
     if(campoCantidad < 0){
         alert("Solo valores positivos");
     }else{
@@ -174,6 +152,7 @@ function realizarCompra(ev){
                 cripto.push(moneda);
                 agregarTransaccion("COMPRA", campoCodigo.value, campoCantidad);
                 actualizarSaldo(pesos);
+                verTransacciones();
             }
         }else{
             alert("No cuenta con esa cantidad de dinero");
@@ -186,12 +165,13 @@ function realizarVenta(ev){
     let campoCodigo = document.getElementById("codigoCriptoV");
     let campoCantidad = document.getElementById("cantidadVenta");
     campoCantidad = parseFloat(campoCantidad.value);
-
     if(campoCantidad < 0){
         alert("Solo valores positivos");
     }else{
         cripto.find(cr => cr.codigo == campoCodigo.value).vender(campoCantidad);
         actualizarSaldo(pesos);
+        verTransacciones();
+        verWallet();
     }
 }
 
@@ -201,9 +181,6 @@ botonDepositar.onclick = () => {realizarDeposito()};
 
 let botonRetirar = document.getElementById("retirar");
 botonRetirar.onclick = () => {realizarRetiro()};
-
-let botonVerTransacciones = document.getElementById("transacc");
-botonVerTransacciones.onclick = () => {verTransacciones()};
 
 let botonVerWallet = document.getElementById("wallet");
 botonVerWallet.onclick = () => {verWallet()};
