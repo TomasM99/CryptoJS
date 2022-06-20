@@ -88,7 +88,7 @@ function realizarDeposito() {
     if(deposito < 0){
         alert("Solo valores positivos")
     }else{
-        pesos = pesos + deposito;
+        pesos += deposito;
         agregarTransaccion("DEPOSITO", "-", deposito);
         actualizarSaldo(pesos);
         verTransacciones();
@@ -102,7 +102,7 @@ function realizarRetiro(){
         alert("Solo valores positivos");
     }else{
         if(pesos >= retiro){
-            pesos = pesos - retiro;
+            pesos -= retiro;
             agregarTransaccion("RETIRO", "-", retiro);
             actualizarSaldo(pesos);
             verTransacciones();
