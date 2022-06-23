@@ -41,7 +41,7 @@ class Criptomoneda{
             pesos += (cantidadVendida*this.precio);
             agregarTransaccion("VENTA", this.codigo, cantidadVendida*this.precio);
         }else{
-            alert("No tiene suficientes criptomonedas")
+            avisarError("No tiene suficientes criptomonedas");
         }
         if(this.cantidad == 0){
             cripto.sort((a,b) => b.cantidad - a.cantidad).pop();
@@ -86,7 +86,7 @@ function realizarDeposito() {
     let deposito = document.getElementById("deposito");
     deposito = parseFloat(deposito.value);
     if(deposito < 0){
-        alert("Solo valores positivos")
+        avisarError("Solo valores positivos");
     }else{
         pesos += deposito;
         agregarTransaccion("DEPOSITO", "-", deposito);
@@ -99,7 +99,7 @@ function realizarRetiro(){
     let retiro = document.getElementById("retiro");
     retiro = parseFloat(retiro.value);
     if(retiro < 0){
-        alert("Solo valores positivos");
+        avisarError("Solo valores positivos");
     }else{
         if(pesos >= retiro){
             pesos -= retiro;
@@ -107,7 +107,7 @@ function realizarRetiro(){
             actualizarSaldo(pesos);
             verTransacciones();
         }else{
-            alert("No cuenta con esa cantidad de dinero");
+            avisarError("No cuenta con esa cantidad de dinero");
         }
     }
 }
@@ -140,7 +140,7 @@ function realizarCompra(ev){
     let campoCantidad = document.getElementById("cantidadCompra");
     campoCantidad = parseFloat(campoCantidad.value);
     if(campoCantidad < 0){
-        alert("Solo valores positivos");
+        avisarError("Solo valores positivos");
     }else{
         if(pesos >= campoCantidad){
             pesos -= campoCantidad;
@@ -155,7 +155,7 @@ function realizarCompra(ev){
                 verTransacciones();
             }
         }else{
-            alert("No cuenta con esa cantidad de dinero");
+            avisarError("No cuenta con esa cantidad de dinero");
         }
     }
 }
@@ -166,12 +166,16 @@ function realizarVenta(ev){
     let campoCantidad = document.getElementById("cantidadVenta");
     campoCantidad = parseFloat(campoCantidad.value);
     if(campoCantidad < 0){
-        alert("Solo valores positivos");
+        avisarError("Solo valores positivos");
     }else{
-        cripto.find(cr => cr.codigo == campoCodigo.value).vender(campoCantidad);
-        actualizarSaldo(pesos);
-        verTransacciones();
-        verWallet();
+        if(cripto.some(cr => cr.codigo == campoCodigo.value)){
+            cripto.find(cr => cr.codigo == campoCodigo.value).vender(campoCantidad);
+            actualizarSaldo(pesos);
+            verTransacciones();
+            verWallet();
+        }else{
+            avisarError("No tiene esa criptomoneda");
+        }
     }
 }
 
@@ -190,3 +194,12 @@ formularioCompra.addEventListener("submit", realizarCompra);
 
 let formularioVenta = document.getElementById("venta");
 formularioVenta.addEventListener("submit", realizarVenta);
+
+//Alertas
+
+function avisarError(mensaje){
+    Toastify({
+        text: mensaje,
+        duration: 3000
+    }).showToast();
+}
