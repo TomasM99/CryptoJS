@@ -31,6 +31,7 @@ class Criptomoneda{
     agregarCompra(compra){
         this.cantidad = this.cantidad + (compra/this.precio);
         agregarTransaccion("COMPRA", this.codigo, compra);
+        avisarConfirmacion("Compra realizada con exito");
         actualizarSaldo(pesos);
         verTransacciones();
     }
@@ -40,6 +41,7 @@ class Criptomoneda{
             this.cantidad -= cantidadVendida;
             pesos += (cantidadVendida*this.precio);
             agregarTransaccion("VENTA", this.codigo, cantidadVendida*this.precio);
+            avisarConfirmacion("Venta realizada con exito");
         }else{
             avisarError("No tiene suficientes criptomonedas");
         }
@@ -92,6 +94,7 @@ function realizarDeposito() {
         agregarTransaccion("DEPOSITO", "-", deposito);
         actualizarSaldo(pesos);
         verTransacciones();
+        avisarConfirmacion("Deposito realizado con exito");
     }
 }
 
@@ -106,6 +109,7 @@ function realizarRetiro(){
             agregarTransaccion("RETIRO", "-", retiro);
             actualizarSaldo(pesos);
             verTransacciones();
+            avisarConfirmacion("Retiro realizado con exito");
         }else{
             avisarError("No cuenta con esa cantidad de dinero");
         }
@@ -151,6 +155,7 @@ function realizarCompra(ev){
                 let moneda = new Criptomoneda(nuevaMoneda, (campoCantidad/nuevaMoneda.precio));
                 cripto.push(moneda);
                 agregarTransaccion("COMPRA", campoCodigo.value, campoCantidad);
+                avisarConfirmacion("Compra realizada con exito");
                 actualizarSaldo(pesos);
                 verTransacciones();
             }
@@ -200,6 +205,21 @@ formularioVenta.addEventListener("submit", realizarVenta);
 function avisarError(mensaje){
     Toastify({
         text: mensaje,
-        duration: 3000
+        duration: 3000,
+        gravity: 'bottom',
+        style: {
+            background: 'linear-gradient(to right, #f60a0a, #f6400a)'
+        }
+    }).showToast();
+}
+
+function avisarConfirmacion(mensaje){
+    Toastify({
+        text: mensaje,
+        duration: 3000,
+        gravity: 'bottom',
+        style: {
+            background: 'linear-gradient(to right, #09bc09, #51c90c)'
+        }
     }).showToast();
 }
