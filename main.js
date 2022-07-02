@@ -25,6 +25,9 @@ for (const moneda of criptomonedas) {
     contenedor.append(opcion);
 }
 
+pesos = parseFloat(localStorage.getItem("pesos"));
+actualizarSaldo(pesos);
+
 //Clases
 class Criptomoneda{
     constructor(criptomoneda, cantidad){
@@ -99,6 +102,10 @@ function actualizarVentas(){
     }
 }
 
+function guardadoLocalStorage(){
+    localStorage.setItem('pesos', pesos);
+}
+
 //Funciones eventos
 function realizarDeposito() {
     let deposito = document.getElementById("deposito");
@@ -111,6 +118,7 @@ function realizarDeposito() {
         actualizarSaldo(pesos);
         verTransacciones();
         avisarConfirmacion("Deposito realizado con exito");
+        guardadoLocalStorage();
     }
 }
 
@@ -126,6 +134,7 @@ function realizarRetiro(){
             actualizarSaldo(pesos);
             verTransacciones();
             avisarConfirmacion("Retiro realizado con exito");
+            guardadoLocalStorage();
         }else{
             avisarError("No cuenta con esa cantidad de dinero");
         }
@@ -175,6 +184,7 @@ function realizarCompra(ev){
                 actualizarSaldo(pesos);
                 actualizarVentas();
                 verTransacciones();
+                guardadoLocalStorage();
                 verWallet();
             }
         }else{
@@ -196,6 +206,7 @@ function realizarVenta(ev){
             actualizarSaldo(pesos);
             actualizarVentas();
             verTransacciones();
+            guardadoLocalStorage();
             verWallet();
         }else{
             avisarError("No tiene esa criptomoneda");
