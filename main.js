@@ -18,6 +18,12 @@ for (const moneda of criptomonedas) {
                             <p> Precio: ${moneda.precio}</p>`;
     contenedor.append(articulo);
 }
+for (const moneda of criptomonedas) {
+    let opcion = document.createElement("option");
+    let contenedor = document.getElementById("codigoCripto");
+    opcion.innerText = `${moneda.codigo}`;
+    contenedor.append(opcion);
+}
 
 //Clases
 class Criptomoneda{
@@ -80,6 +86,16 @@ function verTransacciones(){
                                 <p> Precio: ${transaccion.precio}</p>
                                 <p> Criptomoneda: ${transaccion.cripto}</p>`
         div.append(articulo);
+    }
+}
+
+function actualizarVentas(){
+    let contenedor = document.getElementById("codigoCriptoV");
+    contenedor.innerHTML = ``;
+    for (const moneda of cripto) {
+        let opcion = document.createElement("option");
+        opcion.innerText = `${moneda.codigo}`;
+        contenedor.append(opcion);
     }
 }
 
@@ -157,7 +173,9 @@ function realizarCompra(ev){
                 agregarTransaccion("COMPRA", campoCodigo.value, campoCantidad);
                 avisarConfirmacion("Compra realizada con exito");
                 actualizarSaldo(pesos);
+                actualizarVentas();
                 verTransacciones();
+                verWallet();
             }
         }else{
             avisarError("No cuenta con esa cantidad de dinero");
@@ -176,6 +194,7 @@ function realizarVenta(ev){
         if(cripto.some(cr => cr.codigo == campoCodigo.value)){
             cripto.find(cr => cr.codigo == campoCodigo.value).vender(campoCantidad);
             actualizarSaldo(pesos);
+            actualizarVentas();
             verTransacciones();
             verWallet();
         }else{
