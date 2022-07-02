@@ -1,5 +1,5 @@
 //Variables
-let pesos = 0;
+let pesos;
 let cripto = [];
 let historial = [];
 const criptomonedas =  [{nombre: "BitCoin", codigo: "BTC", precio: 3500},
@@ -11,6 +11,7 @@ const criptomonedas =  [{nombre: "BitCoin", codigo: "BTC", precio: 3500},
                         {nombre: "UniSwap", codigo: "USW", precio: 700},
                         {nombre: "Aave", codigo: "AAV", precio: 1500}];
 
+//Muestro las criptos disponibles
 for (const moneda of criptomonedas) {
     let articulo = document.createElement("article");
     let contenedor = document.getElementById("cotizacion");
@@ -25,15 +26,12 @@ for (const moneda of criptomonedas) {
     contenedor.append(opcion);
 }
 
-pesos = parseFloat(localStorage.getItem("pesos"));
-actualizarSaldo(pesos);
-
 //Clases
 class Criptomoneda{
-    constructor(criptomoneda, cantidad){
-        this.nombre = criptomoneda.nombre;
-        this.codigo = criptomoneda.codigo;
-        this.precio = criptomoneda.precio;
+    constructor(nombre, codigo, precio, cantidad){
+        this.nombre = nombre;
+        this.codigo = codigo;
+        this.precio = precio;
         this.cantidad = cantidad;
     }
 
@@ -43,6 +41,7 @@ class Criptomoneda{
         avisarConfirmacion("Compra realizada con exito");
         actualizarSaldo(pesos);
         verTransacciones();
+        guardadoLocalStorage();
     }
 
     vender(cantidadVendida){
@@ -51,6 +50,7 @@ class Criptomoneda{
             pesos += (cantidadVendida*this.precio);
             agregarTransaccion("VENTA", this.codigo, cantidadVendida*this.precio);
             avisarConfirmacion("Venta realizada con exito");
+            guardadoLocalStorage();
         }else{
             avisarError("No tiene suficientes criptomonedas");
         }
@@ -65,6 +65,27 @@ class Transaccion{
         this.tipo = tipo;
         this.cripto = cripto;
         this.precio = precio;
+    }
+}
+
+//Local Storage
+if(localStorage.getItem("pesos") == null){
+    pesos = 0;
+}else{
+    pesos = parseFloat(localStorage.getItem("pesos"));
+    actualizarSaldo(pesos);
+}
+if(localStorage.getItem("historial") != null){
+    let historialViejo = JSON.parse(localStorage.getItem("historial"));
+    for (const transaccion of historialViejo){
+        historial.push(new Transaccion(transaccion.tipo, transaccion.cripto, transaccion.precio));
+    }
+    verTransacciones();
+}
+if(localStorage.getItem("criptos") != null){
+    let criptoViejo = JSON.parse(localStorage.getItem("criptos"));
+    for (const moneda of criptoViejo){
+        cripto.push(new Criptomoneda(moneda.nombre, moneda.codigo, moneda.precio, moneda.cantidad));
     }
 }
 
@@ -104,6 +125,8 @@ function actualizarVentas(){
 
 function guardadoLocalStorage(){
     localStorage.setItem('pesos', pesos);
+    localStorage.setItem('historial', JSON.stringify(historial));
+    localStorage.setItem('criptos', JSON.stringify(cripto));
 }
 
 //Funciones eventos
@@ -177,7 +200,7 @@ function realizarCompra(ev){
                 cripto.find(cr => cr.codigo == campoCodigo.value).agregarCompra(campoCantidad);
             }else{
                 let nuevaMoneda = criptomonedas.find(cr => cr.codigo == campoCodigo.value);
-                let moneda = new Criptomoneda(nuevaMoneda, (campoCantidad/nuevaMoneda.precio));
+                let moneda = new Criptomoneda(nuevaMoneda.nombre, nuevaMoneda.codigo, nuevaMoneda.precio, (campoCantidad/nuevaMoneda.precio));
                 cripto.push(moneda);
                 agregarTransaccion("COMPRA", campoCodigo.value, campoCantidad);
                 avisarConfirmacion("Compra realizada con exito");
