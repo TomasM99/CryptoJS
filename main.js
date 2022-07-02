@@ -89,7 +89,13 @@ if(localStorage.getItem("criptos") != null){
     }
 }
 
-//Funciones
+function guardadoLocalStorage(){
+    localStorage.setItem('pesos', pesos);
+    localStorage.setItem('historial', JSON.stringify(historial));
+    localStorage.setItem('criptos', JSON.stringify(cripto));
+}
+
+//Funciones generales
 function agregarTransaccion(tipo, codigo, precio){
     let transaccion = new Transaccion(tipo, codigo, precio);
     historial.push(transaccion);
@@ -121,12 +127,6 @@ function actualizarVentas(){
         opcion.innerText = `${moneda.codigo}`;
         contenedor.append(opcion);
     }
-}
-
-function guardadoLocalStorage(){
-    localStorage.setItem('pesos', pesos);
-    localStorage.setItem('historial', JSON.stringify(historial));
-    localStorage.setItem('criptos', JSON.stringify(cripto));
 }
 
 //Funciones eventos
@@ -254,7 +254,6 @@ let formularioVenta = document.getElementById("venta");
 formularioVenta.addEventListener("submit", realizarVenta);
 
 //Alertas
-
 function avisarError(mensaje){
     Toastify({
         text: mensaje,
