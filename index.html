@@ -23,11 +23,11 @@
         <div>
             <nav>
                 <ul>
-                    <li><a href="">Inicio</a></li>
-                    <li><a href="">Cotizaciones</a></li>
-                    <li><a href="">Deposito</a></li>
-                    <li><a href="">Wallet</a></li>
-                    <li><a href="">Nosotros</a></li>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#cotizaciones">Cotizaciones</a></li>
+                    <li><a href="#plata">Deposito</a></li>
+                    <li><a href="#beneficios">Beneficios</a></li>
+                    <li><a href="#wallet">Wallet</a></li>
                 </ul>
             </nav>
         </div>
@@ -37,10 +37,10 @@
 
     <main>
     <!--Inicio-->
-        <section>
+        <section id="inicio">
             <div>
-                <h2>Lorem, ipsum.</h2>
-                <p>Lorem ipsum dolor sit amet consectetur.</p>
+                <h2>Cryto JS</h2>
+                <p>CryptoJS es el lugar indicado para comprar tus criptos de una manera segura, sencilla y rapido. Sin comisiones y transaccioens en tiempo real.</p>
                 <button>Empezar</button>
             </div>
             <div>
@@ -49,11 +49,12 @@
         </section>
 
     <!--Cotizaciones-->
-        <section class="cotizaciones">
-            <h2>Monedas disponibles</h2>
+        <section id="cotizaciones" class="cotizaciones">
+            <h2>Criptos disponibles</h2>
             <div id="cotizacion" class="orden">
 
             </div>
+            <h3>Comprar</h3>
             <form id="compra">
                 <div>
                     <label for="codigoCripto">Seleccione el codigo de cripto a comprar</label>
@@ -72,7 +73,7 @@
         </section>
 
     <!--Deposito/Retiro-->
-        <section>
+        <section id="plata">
             <div>
                 <i></i>
                 <p id="pesos">Pesos: $0</p>
@@ -90,21 +91,21 @@
         </section>
 
     <!--Tarjetas con info-->
-        <section>
+        <section id="beneficios">
             <div>
                 <i class="material-icons">security</i>
                 <h3>SEGURIDAD</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <p>El cuidado ideal de tu plata y tus datos.</p>
             </div>
             <div>
                 <i class="material-icons">attach_money</i>
                 <h3>DEPOSITA PESOS</h3>
-                <p>Lorem ipsum dolor sit amet consectetur.</p>
+                <p>Olvidate del problema de los dolares.</p>
             </div>
             <div>
                 <i class="material-icons">currency_bitcoin</i>
                 <h3>COMPRA CRIPTO</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+                <p>Inverti en tu moneda favorita.</p>
             </div>
         </section>
 
@@ -135,7 +136,7 @@
             </div>
         </section>
         <section class="transacciones">
-            <h2>Transacciones</h2>
+            <h2>Tu historial</h2>
             <div id="transacciones" class="orden">
             
             </div>
