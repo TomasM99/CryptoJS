@@ -173,6 +173,16 @@ body{
 .redes img{
     margin: 5%;
 }
+.boton-footer{
+    color: #EEEEEE;
+    background-color: #222831;
+    border-color: #222831;
+}
+.boton-footer:hover{
+    background-color: #EEEEEE;
+    border-color: #EEEEEE;
+    color: #222831;
+}
 
 .wallet{
     margin-top: 40px;
