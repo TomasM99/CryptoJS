@@ -276,7 +276,14 @@ function avisarConfirmacion(mensaje){
     }).showToast();
 }
 
+/* 
+Mi idea era crear un archivo .json con los datos de las monedas necesarios.
+Iba a hacer una funcion y todo que los tome y los muestre como hace con el array de objetos del principio.
+Segui los pasos tal cual la clase pero me tira un error que la verdad no se como solucionar, por eso no uso una API.
+/*
 const URLJSON = "/simulador.json";
 fetch(URLJSON)
     .then((response) => response.json())
     .then((json) => console.log(json));
+
+*/
