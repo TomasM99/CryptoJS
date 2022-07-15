@@ -45,11 +45,40 @@ body{
 .inicio{
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-bottom: 2%;
 }
 .inicio div{
     padding-left: 5%;
     padding-right: 5%;
+}
+.inicio-texto{
+    background-color: #EEEEEE;
+    color: #222831;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.35);
+    border-radius: 2%;
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    margin-left: 5%;
+}
+.inicio-texto h2{
+    font-weight: bold;
+}
+.boton-inicio{
+    color: #EEEEEE;
+    font-weight: bold;
+    background-color: #393E46;
+    border-color: #393E46;
+}
+.boton-inicio:hover{
+    background-color: #FD7014;
+    border-color: #FD7014;
+    color: #222831;
+}
+.inicio-imagen{
+    border: 1px solid #EEEEEE;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.35);
+    width: 100%;
 }
 
 .plata{
