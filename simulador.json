@@ -1,0 +1,10 @@
+[
+    {"id": 1, "name": "BitCoin", "code": "BTC", "price": 3500},
+    {"id": 2, "name": "Ethereum", "code": "ETH", "price": 500},
+    {"id": 3, "name": "DogeCoin", "code": "DGC", "price": 10},
+    {"id": 4, "name": "USD Coin", "code": "USC", "price": 200},
+    {"id": 5, "name": "Dai", "code": "DAI", "price": 250},
+    {"id": 6, "name": "LiteCoin", "code": "LTC", "price": 2000},
+    {"id": 7, "name": "UniSwap", "code": "USW", "price": 700},
+    {"id": 8, "name": "Aave", "code": "AAV", "price": 1500}
+]

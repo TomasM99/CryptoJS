@@ -275,3 +275,8 @@ function avisarConfirmacion(mensaje){
         }
     }).showToast();
 }
+
+const URLJSON = "/simulador.json";
+fetch(URLJSON)
+    .then((response) => response.json())
+    .then((json) => console.log(json));
