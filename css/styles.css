@@ -3,6 +3,33 @@
     padding: 0;
 }
 
+.navegador{
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+.menu{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.menu li{
+    list-style-type: none;
+    font-size: 25px;
+}
+.menu li a{
+    text-decoration: none;
+}
+
+.inicio{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2%;
+}
+.inicio div{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
 .wallet{
     margin-top: 40px;
     margin-bottom: 40px;
