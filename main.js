@@ -2,6 +2,7 @@
 let pesos;
 let cripto = [];
 let historial = [];
+//Mi "API", al final se explica el problema
 const criptomonedas =  [{nombre: "BitCoin", codigo: "BTC", precio: 3500},
                         {nombre: "Ethereum", codigo: "ETH", precio: 500},
                         {nombre: "DogeCoin", codigo: "DGC", precio: 10},
@@ -68,7 +69,7 @@ class Transaccion{
     }
 }
 
-//Local Storage
+//Manejo del Local Storage
 if(localStorage.getItem("pesos") == null){
     pesos = 0;
 }else{
