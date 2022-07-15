@@ -30,6 +30,74 @@
     padding-right: 5%;
 }
 
+.plata{
+    display: flex;
+    justify-content: center;
+    padding: 2%;
+    margin: 2%;
+}
+.plata-pesos{
+    display: flex;
+    align-items: center;
+    margin-right: 5%;
+}
+.plata-input{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.beneficios{
+    display: flex;
+    justify-content: center;
+}
+.tarjeta{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 4%;
+    padding-top: 2%;
+    padding-bottom: 4%;
+    width: 20%;
+    background-color: #7a8ac0;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
+}
+.tarjeta img{
+    width: 25%;
+    padding-bottom: 10%;
+}
+.tarjeta h3{
+    margin-top: 5%;
+    text-align: center;
+    color: #e9e9e9;
+    font-weight: bold;
+}
+.tarjeta p{
+    text-align: center;
+    margin-bottom: 0px;
+    padding: 1%;
+    color: #e9e9e9;
+}
+
+.footer{
+    display: flex;
+    justify-content: space-around;
+    background-color: #ebded4;
+    box-shadow: 10px 6px 10px 10px rgba(0, 0, 0, 0.15);
+}
+
+.pie_pagina {
+    display: flex;
+    justify-content: space-around;
+    background-color: #ebded4; }
+    .pie_pagina div {
+      padding-top: 10px; }
+  
+  .redes_sociales a {
+    text-decoration: none;
+    color: black; }
+
 .wallet{
     margin-top: 40px;
     margin-bottom: 40px;
