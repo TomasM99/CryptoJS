@@ -3,13 +3,6 @@
     padding: 0;
 }
 
-/*
-Color negro: #222831
-Grisecito: #393E46
-Naranja: #FD7014
-Blanco: #EEEEEE
-*/
-
 body{
     background-color: #222831;
     color: #EEEEEE;
@@ -75,6 +68,10 @@ body{
     border-color: #FD7014;
     color: #222831;
 }
+.boton-inicio a{
+    text-decoration: none;
+    color: #EEEEEE;
+}
 .inicio-imagen{
     border: 1px solid #EEEEEE;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.35);
@@ -111,7 +108,7 @@ body{
 }
 
 .formulario-accion{
-    margin: 2% 10% 2% 10%;
+    margin: 2% 15% 2% 15%;
     padding: 2% 2%;
     background-color: #EEEEEE;
     color: #222831;
@@ -120,21 +117,48 @@ body{
     align-items: center;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.35);
 }
+.formulario-accion h3{
+    padding-bottom: 2%;
+    font-weight: bold;
+}
+.boton-form{
+    margin-top: 15%;
+    display: flex;
+    justify-content: center;
+}
 
 .plata{
     display: flex;
     justify-content: center;
     padding: 2%;
-    margin: 2%;
+    margin: 2% 15% 2% 15%;
+    background-color: #FD7014;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.35);
 }
 .plata-pesos{
     display: flex;
     align-items: center;
-    margin-right: 5%;
+    width: 30%;
+}
+.plata-pesos p{
+    color: #222831;
+    font-size: 30px;
+    font-weight: bolder;
 }
 .plata-input{
+    width: 35%;
     display: flex;
     flex-direction: column;
+}
+.plata-input div{
+    margin: 5% 5%;
+}
+.accion{
+    display: flex;
+    justify-content: center;
+}
+.accion button{
+    margin-left: 5%;
 }
 
 .beneficios{

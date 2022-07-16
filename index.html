@@ -37,7 +37,7 @@
             <div class="inicio-texto">
                 <h2>Crypto JS</h2>
                 <p>CryptoJS es el lugar indicado para comprar tus criptos de una manera segura, sencilla y rapido. Sin comisiones y transacciones en tiempo real.</p>
-                <button type="button" class="btn btn-dark btn-lg boton-inicio hvr-grow">EMPEZAR</button>
+                <button type="button" class="btn btn-dark btn-lg boton-inicio hvr-grow"><a href="#plata">EMPEZAR</a></button>
             </div>
             <div>
                 <img class="inicio-imagen hvr-grow" src="multimedia/inicio.jpg" alt="Imagen de inicio">
@@ -53,20 +53,20 @@
                 </div>
             </div>
                 <form id="compra" class="formulario-accion">
-                    <h3>Comprar</h3>
+                    <h3>COMPRAR</h3>
                     <div class="form">
                         <div>
-                            <label for="codigoCripto">Seleccione el codigo de cripto a comprar</label>
-                            <select id="codigoCripto">
+                            <label for="codigoCripto">Codigo cripto</label>
+                            <select id="codigoCripto" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
 
                             </select>
                         </div>
                         <div>
-                            <label for="cantidadCompra">Ingrese en pesos cuanto quiere comprar</label>
-                            <input type="number" step="any" id="cantidadCompra" placeholder="500">
+                            <label for="cantidadCompra">Compra en pesos</label>
+                            <input type="number" step="any" id="cantidadCompra" placeholder="500" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                         </div>
-                        <div>
-                            <button type="submit"><strong>COMPRAR</strong></button>
+                        <div class="boton-form">
+                            <button type="submit" class="btn btn-dark btn-lg boton-inicio hvr-grow"><strong>COMPRAR</strong></button>
                         </div>
                     </div>
                 </form>
@@ -78,13 +78,13 @@
                 <p id="pesos">Pesos: $0</p>
             </div>
             <div class="plata-input">
-                <div>
-                    <input type="number" step="any" id="deposito">
-                    <button id="depositar">Depositar</button>
+                <div class="accion">
+                    <input type="number" step="any" id="deposito" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <button id="depositar" class="btn btn-dark boton-footer">Depositar</button>
                 </div>
-                <div>
-                    <input type="number" step="any" id="retiro">
-                    <button id="retirar">Retirar</button>
+                <div class="accion">
+                    <input type="number" step="any" id="retiro" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <button id="retirar" class="btn btn-dark boton-footer">Retirar</button>
                 </div>
             </div>
         </section>
@@ -116,20 +116,20 @@
             </div>
             <button id="wallet" class="btn btn-dark btn-lg boton-wallet hvr-grow">Ver wallet</button>
                 <form id="venta" class="formulario-accion">
-                    <h3>Vender</h3>
+                    <h3>VENDER</h3>
                     <div class="form">
                         <div>
-                            <label for="codigoCriptoV">Seleccione el codigo de cripto a vender</label>
-                            <select id="codigoCriptoV">
+                            <label for="codigoCriptoV">Codigo cripto</label>
+                            <select id="codigoCriptoV" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
                                 
                             </select>
                         </div>
                         <div>
-                            <label for="cantidadVenta">Ingrese en criptomonedas cuanto quiere vender</label>
-                            <input type="number" step="any" id="cantidadVenta" placeholder="500">
+                            <label for="cantidadVenta">Vende en cripto</label>
+                            <input type="number" step="any" id="cantidadVenta" placeholder="500" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                         </div>
-                        <div>
-                            <button type="submit"><strong>VENDER</strong></button>
+                        <div class="boton-form">
+                            <button type="submit" class="btn btn-dark btn-lg boton-inicio hvr-grow"><strong>VENDER</strong></button>
                         </div>
                     </div>
                 </form>
