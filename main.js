@@ -16,8 +16,9 @@ const criptomonedas =  [{nombre: "BitCoin", codigo: "BTC", precio: 3500},
 for (const moneda of criptomonedas) {
     let articulo = document.createElement("article");
     let contenedor = document.getElementById("cotizacion");
-    articulo.innerHTML = `<h4> ${moneda.nombre} (${moneda.codigo}) </h4>
-                            <p> Precio: ${moneda.precio}</p>`;
+    articulo.innerHTML = `<p class="nombre-moneda"> ${moneda.nombre} </p>
+                            <p> (${moneda.codigo}) </p>
+                            <p> Precio: $${moneda.precio}</p>`;
     contenedor.append(articulo);
 }
 for (const moneda of criptomonedas) {
@@ -89,6 +90,7 @@ if(localStorage.getItem("criptos") != null){
         cripto.push(new Criptomoneda(moneda.nombre, moneda.codigo, moneda.precio, moneda.cantidad));
     }
 }
+actualizarVentas();
 
 function guardadoLocalStorage(){
     localStorage.setItem('pesos', pesos);
@@ -110,10 +112,10 @@ function actualizarSaldo(nuevoSaldo) {
 function verTransacciones(){
     let div = document.getElementById("transacciones");
     div.innerHTML = `<div></div>`;
-    div.className = "orden";
+    div.className = "monedas historial";
     for (const transaccion of historial) {
         let articulo = document.createElement("article");
-        articulo.innerHTML = `<h4> ${transaccion.tipo} </h4>
+        articulo.innerHTML = `<p class="nombre-moneda"> ${transaccion.tipo} </p>
                                 <p> Precio: ${transaccion.precio}</p>
                                 <p> Criptomoneda: ${transaccion.cripto}</p>`
         div.append(articulo);
@@ -168,11 +170,11 @@ function realizarRetiro(){
 function verWallet(){
     let contenedor = document.getElementById("criptos");
     contenedor.innerHTML = `<div></div>`;
-    contenedor.className = "orden";
+    contenedor.className = "monedas wallet";
     for (const criptomoneda of cripto) {
         let articulo = document.createElement("article");
         let total = criptomoneda.precio * criptomoneda.cantidad;
-        articulo.innerHTML = `<h4> ${criptomoneda.codigo} (${criptomoneda.nombre}) </h4>
+        articulo.innerHTML = `<p class="nombre-moneda"> ${criptomoneda.codigo} (${criptomoneda.nombre}) </p>
                                 <p> Precio: ${criptomoneda.precio}</p>
                                 <p> Cantidad: ${criptomoneda.cantidad}</p>
                                 <p> Total: ${total}</p>`;

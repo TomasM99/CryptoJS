@@ -81,6 +81,46 @@ body{
     width: 100%;
 }
 
+.titulo{
+    padding-left: 5%;
+    text-decoration: underline;
+}
+.monedas{
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    margin: 2% 5% 2% 5%;
+    padding-left: 3%;
+    padding: 2% 2%;
+    background-color: #FD7014;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.35);
+    border-radius: 2%;
+}
+.monedas article {
+    display: flex;
+    align-items: center;
+    padding-left: 10%;
+}
+.monedas article p{
+    padding-right: 5%;
+    color: #222831;
+}
+.nombre-moneda{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.formulario-accion{
+    margin: 2% 10% 2% 10%;
+    padding: 2% 2%;
+    background-color: #EEEEEE;
+    color: #222831;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.35);
+}
+
 .plata{
     display: flex;
     justify-content: center;
@@ -95,7 +135,6 @@ body{
 .plata-input{
     display: flex;
     flex-direction: column;
-
 }
 
 .beneficios{
@@ -154,7 +193,28 @@ body{
 .hvr-grow:hover,
 .hvr-grow:focus,
 .hvr-grow:active {
-    transform: scale(1.1); }
+    transform: scale(1.1);
+}
+
+.boton-wallet{
+    color: #222831;
+    font-weight: bold;
+    background-color: #FD7014;
+    border-color: #FD7014;
+    margin-left: 5%;
+}
+.boton-wallet:hover{
+    background-color: #EEEEEE;
+    border-color: #EEEEEE;
+    color: #222831;
+}
+
+.wallet{
+    width: 50%;
+}
+.historial{
+    width: 45%;
+}
 
 .footer{
     display: flex;
@@ -182,24 +242,6 @@ body{
     background-color: #EEEEEE;
     border-color: #EEEEEE;
     color: #222831;
-}
-
-.wallet{
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
-.transacciones{
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
-.orden{
-    display: flex;
-}
-
-.orden article {
-    padding: 15px;
 }
 
 .ocultar{

@@ -45,27 +45,31 @@
         </section>
 
     <!--Cotizaciones-->
-        <section id="cotizaciones" class="cotizaciones">
-            <h2>Criptos disponibles</h2>
-            <div id="cotizacion" class="orden">
+        <section id="cotizaciones">
+            <div class="disponibles">
+                <h2 class="titulo">Criptos disponibles</h2>
+                <div id="cotizacion" class="monedas">
 
+                </div>
             </div>
-            <h3>Comprar</h3>
-            <form id="compra">
-                <div>
-                    <label for="codigoCripto">Seleccione el codigo de cripto a comprar</label>
-                    <select id="codigoCripto">
+                <form id="compra" class="formulario-accion">
+                    <h3>Comprar</h3>
+                    <div class="form">
+                        <div>
+                            <label for="codigoCripto">Seleccione el codigo de cripto a comprar</label>
+                            <select id="codigoCripto">
 
-                    </select>
-                </div>
-                <div>
-                    <label for="cantidadCompra">Ingrese en pesos cuanto quiere comprar</label>
-                    <input type="number" step="any" id="cantidadCompra" placeholder="500">
-                </div>
-                <div>
-                    <button type="submit"><strong>COMPRAR</strong></button>
-                </div>
-            </form>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="cantidadCompra">Ingrese en pesos cuanto quiere comprar</label>
+                            <input type="number" step="any" id="cantidadCompra" placeholder="500">
+                        </div>
+                        <div>
+                            <button type="submit"><strong>COMPRAR</strong></button>
+                        </div>
+                    </div>
+                </form>
         </section>
 
     <!--Deposito/Retiro-->
@@ -105,34 +109,34 @@
         </section>
 
         <!--Wallet-->
-        <section class="wallet">
-            <h2>Tu billetera</h2>
-            <button id="wallet">Ver wallet</button>
-            <div id="criptos" class="orden">
+        <section>
+            <h2 class="titulo">Tu billetera</h2>
+            <div id="criptos" class="ocultar">
             
             </div>
-            <h3>Vender</h3>
-            <div>
-                <form id="venta">
-                    <div>
-                        <label for="codigoCriptoV">Seleccione el codigo de cripto a vender</label>
-                        <select id="codigoCriptoV">
-                            
-                        </select>
-                    </div>
-                    <div>
-                        <label for="cantidadVenta">Ingrese en criptomonedas cuanto quiere vender</label>
-                        <input type="number" step="any" id="cantidadVenta" placeholder="500">
-                    </div>
-                    <div>
-                        <button type="submit"><strong>VENDER</strong></button>
+            <button id="wallet" class="btn btn-dark btn-lg boton-wallet hvr-grow">Ver wallet</button>
+                <form id="venta" class="formulario-accion">
+                    <h3>Vender</h3>
+                    <div class="form">
+                        <div>
+                            <label for="codigoCriptoV">Seleccione el codigo de cripto a vender</label>
+                            <select id="codigoCriptoV">
+                                
+                            </select>
+                        </div>
+                        <div>
+                            <label for="cantidadVenta">Ingrese en criptomonedas cuanto quiere vender</label>
+                            <input type="number" step="any" id="cantidadVenta" placeholder="500">
+                        </div>
+                        <div>
+                            <button type="submit"><strong>VENDER</strong></button>
+                        </div>
                     </div>
                 </form>
-            </div>
         </section>
         <section class="transacciones">
-            <h2>Tu historial</h2>
-            <div id="transacciones" class="orden">
+            <h2 class="titulo">Tu historial</h2>
+            <div id="transacciones" class="ocultar">
             
             </div>
         </section>
